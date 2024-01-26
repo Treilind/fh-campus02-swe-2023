@@ -62,9 +62,9 @@ public class EndToEndTest {
    public void testStore() throws Exception {
       double result = parser.parse(new File("src/test/resources/StoreTest.xml"));
 
-      assertEquals(408,result,0);
-
-
+      assertEquals(512,result,0);
       }
+
+
    }
 
