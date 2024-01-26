@@ -188,4 +188,14 @@ public class CalculatorTest {
             count++;
         }
     }
+
+    @Test(expected = CalculatorException.class)
+    public void testLoadNegative() throws CalculatorException {
+        Calculator calc = new CalculatorImpl();
+        calc.push(4);
+        calc.push(6);
+        double result = calc.perform(Operation.add);
+        calc.getStore().store("A",(int)result);
+        calc.push(calc.getStore().load("B"));
+    }
 }

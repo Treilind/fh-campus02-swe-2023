@@ -1,10 +1,14 @@
 package at.campus02.swe;
 
+import at.campus02.swe.logic.Store;
+
 public interface Calculator {
+
+    Store store = new Store();
 
     enum Operation {
         
-      add, sub, mul, div, mod, sin, cos, random, skalar
+      add, sub, mul, div, mod, sin, cos, random, skalar,
 
     };
 
@@ -17,4 +21,8 @@ public interface Calculator {
     public int calculateSkalar ();
 
     void clear();
+
+    Store getStore();
+
+
 }
