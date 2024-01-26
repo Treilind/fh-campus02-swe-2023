@@ -22,7 +22,7 @@ public class Store {
         }
         else {
             String[] cmds = line.split(" ");
-            char value = cmds[1].charAt(0);
+            char value = cmds[0].charAt(0);
             storeMap.put(value, result);
         }
     }
@@ -34,7 +34,7 @@ public class Store {
         }
        else {
             String[] cmds = line.split(" ");
-            char value = cmds[1].charAt(0);
+            char value = cmds[0].charAt(0);
             if (!storeMap.containsKey(value)) {
                 throw new CalculatorException("no result stored in value: " + value);
             }
