@@ -198,4 +198,14 @@ public class CalculatorTest {
         calc.getStore().store("A",(int)result);
         calc.push(calc.getStore().load("B"));
     }
+
+    @Test
+    public void testLoadPositive() throws CalculatorException{
+        Calculator calc = new CalculatorImpl();
+        calc.push(4);
+        calc.push(6);
+        double result = calc.perform(Operation.mul);
+        calc.getStore().store("A", (int)result);
+        assertEquals(24, calc.getStore().load("A"));
+    }
 }
