@@ -6,6 +6,7 @@ import at.campus02.swe.CalculatorException;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 import java.util.Stack;
 
@@ -15,19 +16,24 @@ public class CalculatorImpl implements Calculator {
 
     private Random random;
 
+    public Store store;
+
+
     public CalculatorImpl(int seed) {
         this.random = new Random(seed);
+        store = new Store();
     }
 
     public CalculatorImpl() {
         this.random = new Random();
+        store = new Store();
     }
 
     @Override
     public double perform(Operation op) throws CalculatorException {
 
         if (op == Operation.skalar)
-           return calculateSkalar();
+            return calculateSkalar();
 
         double b = pop();
         double a = pop();
@@ -54,7 +60,8 @@ public class CalculatorImpl implements Calculator {
             case cos:
                 return Math.cos(Math.toRadians(a));
             case random:
-                return returnRandom(a,b);
+                return returnRandom(a, b);
+
         }
 
         return 0;
@@ -79,17 +86,16 @@ public class CalculatorImpl implements Calculator {
     }
 
 
-    public int calculateSkalar () {
+    public int calculateSkalar() {
         int anzVektor = stack_.pop().intValue();
         int result = 0;
         ArrayList<Integer> vektor1 = new ArrayList<>();
         ArrayList<Integer> vektor2 = new ArrayList<>();
 
-        for (int i = 0; i < anzVektor*2; i++) {
-            if (i < anzVektor){
+        for (int i = 0; i < anzVektor * 2; i++) {
+            if (i < anzVektor) {
                 vektor1.add(stack_.pop().intValue());
-            }
-            else {
+            } else {
                 vektor2.add(stack_.pop().intValue());
             }
         }
@@ -98,30 +104,32 @@ public class CalculatorImpl implements Calculator {
         }
 
         return result;
-  
+
     }
-    
-  public double returnRandom (double a, double b){
+
+    public double returnRandom(double a, double b) {
         int min;
         int max;
         // zwei Zahlen auf Stack pushen
-        if (a < b){
-            min = (int)a;
-            max = (int)b;}
-        else if (a > b){
-            max = (int)a;
-            min = (int)b;
-        }
-        else return (double)a;
+        if (a < b) {
+            min = (int) a;
+            max = (int) b;
+        } else if (a > b) {
+            max = (int) a;
+            min = (int) b;
+        } else return (double) a;
 
 
-        int randomNr = random.nextInt(min,max);
+        int randomNr = random.nextInt(min, max);
         return (double) randomNr;
 
 
         // eine Randomzahl zwischen den 2 Zahlen generieren lassen
     }
 
+    public Store getStore() {
+        return store;
+    }
 }
 
 
